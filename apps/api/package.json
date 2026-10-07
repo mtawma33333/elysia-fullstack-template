@@ -1,0 +1,27 @@
+{
+  "name": "@bstack/api",
+  "version": "0.0.0",
+  "private": true,
+  "main": "src/index.ts",
+  "imports": {
+    "#src/*": "./src/*"
+  },
+  "scripts": {
+    "dev": "bun run --watch src/index.ts",
+    "db:migrate": "bun src/migrate.ts"
+  },
+  "dependencies": {
+    "@bogeychan/elysia-logger": "catalog:",
+    "@bstack/db": "workspace:*",
+    "@elysia/cors": "catalog:",
+    "@elysia/openapi": "catalog:",
+    "drizzle-orm": "catalog:",
+    "elysia": "catalog:"
+  },
+  "devDependencies": {
+    "@bstack/config": "workspace:*",
+    "@elysia/eden": "catalog:",
+    "@types/bun": "catalog:",
+    "pino-pretty": "catalog:"
+  }
+}
