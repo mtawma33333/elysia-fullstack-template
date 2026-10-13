@@ -7,7 +7,11 @@ import tanstack from "ultracite/oxlint/tanstack";
 import vitest from "ultracite/oxlint/vitest";
 import { defineConfig } from "vite-plus";
 
-const generatedFiles = [".vibestart/**", "**/routeTree.gen.ts"];
+const generatedFiles = [
+  ".vibestart/**",
+  "**/routeTree.gen.ts",
+  "packages/db/src/migrations/**",
+];
 const vendoredFiles = ["packages/ui/src/components/**"];
 
 export default defineConfig({
