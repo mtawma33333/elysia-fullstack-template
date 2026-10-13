@@ -56,6 +56,9 @@
     "build": "vp run -r build",
     "ready": "vp check && vp run knip && vp test && vp run test:e2e && vp run -r build",
     "prepare": "vp config",
+    "db:generate": "vp run --filter @bstack/db db:generate",
+    "db:migrate": "vp run --filter @bstack/api db:migrate",
+    "db:studio": "vp run --filter @bstack/db db:studio",
     "test:e2e": "vp run --filter @bstack/web test:e2e",
     "knip": "knip"
   },
