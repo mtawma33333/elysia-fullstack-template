@@ -1,30 +1,30 @@
 # bstack
 
-React, on [Vite+](https://viteplus.dev).
-
 | Layer     | Choice                                                    |
 | --------- | --------------------------------------------------------- |
 | Frontend  | React 19, TanStack Router, TanStack Query, Tailwind CSS 4 |
+| Backend   | ElysiaJS                                                  |
+| Database  | SQLite via `node:sqlite`, Drizzle ORM v1 in `packages/db` |
 | UI        | shadcn/ui on Base UI, in `packages/ui`                    |
 | Toolchain | Vite+ (`vp`): dev, build, test, lint, format, type check  |
 
 ## Getting started
 
 ```sh
-vp install
+vp run ready      # check + knip + test + test:e2e + production build
 vp run dev
 ```
 
-Open http://localhost:5173.
+Frontend: http://localhost:5173
+API docs: http://localhost:3000/openapi
 
-## Commands
+The first `vp run test:e2e` needs a browser: `cd apps/web && bunx playwright install chromium`.
+
+## Database
+
+Edit table in `packages/db/src/schema/`, then:
 
 ```sh
-vp check          # format, lint, type check
-vp run knip       # unused files, exports, dependencies, and catalog entries
-vp test           # unit tests (Vitest)
-vp run test:e2e   # e2e tests (Playwright) in Chromium, against the dev server
-vp run ready      # check + knip + test + test:e2e + production build
+vp run db:generate   # writes a migration to packages/db/src/migrations/
+vp run db:migrate
 ```
-
-The first `vp run test:e2e` needs a browser: `cd apps/web && vp exec playwright install chromium`.
