@@ -6,7 +6,7 @@ import { Elysia } from "elysia";
 import { env } from "#src/env.ts";
 
 import packageJson from "../package.json";
-import { healthRoutes } from "./health";
+import { api } from "./api";
 
 export const app = new Elysia()
   .use(
@@ -33,4 +33,4 @@ export const app = new Elysia()
       references: fromTypes(),
     })
   )
-  .use(healthRoutes);
+  .use(api);

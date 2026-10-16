@@ -7,7 +7,8 @@ Guidance for agents working in this monorepo.
 This repo builds a **full-stack Web App** that `placeholder:purpose`
 
 Modules:
-- `apps/web/`: React frontend 
+
+- `apps/web/`: React frontend
 - `apps/api/`: Elysia backend
 - `packages/db/`: database
 - `packages/ui/`: shadcn components & global CSS
@@ -21,7 +22,11 @@ Modules:
 - Backend: ElysiaJS
 - DB: SQLite, Drizzle ORM v1
 - UI: shadcn, base-ui, lucide icons, Tailwind CSS 4
-- Toolchain: Vite+
+
+## Toolchain (Vite+)
+
+- use `vp install`, `vp check --fix`, not package manager
+- use `vp run <script>`, not package manager
 
 ## Coding expectations
 

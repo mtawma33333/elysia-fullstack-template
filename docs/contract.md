@@ -54,12 +54,12 @@ Every module mounts under a route prefix and a single OpenAPI tag, and every rou
 
 Read from the environment in `apps/api/src/env.ts`, with the defaults below. See `apps/api/.env.example`.
 
-| Variable | Default | Purpose |
-| --- | --- | --- |
-| `NODE_ENV` | `development` | Runtime mode |
-| `LOG_LEVEL` | `info` | Pino log level |
-| `DATABASE_URL` | `local.db` | SQLite file path |
-| `PORT` | `3000` | API listen port |
+| Variable       | Default       | Purpose          |
+| -------------- | ------------- | ---------------- |
+| `NODE_ENV`     | `development` | Runtime mode     |
+| `LOG_LEVEL`    | `info`        | Pino log level   |
+| `DATABASE_URL` | `local.db`    | SQLite file path |
+| `PORT`         | `3000`        | API listen port  |
 
 ## Testing contract
 

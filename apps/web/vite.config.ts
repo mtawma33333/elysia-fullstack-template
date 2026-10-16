@@ -9,4 +9,11 @@ export default defineConfig({
     react({ compiler: true }),
     tailwindcss(),
   ],
+  server: {
+    proxy: {
+      "/api": {
+        target: "http://localhost:3000",
+      },
+    },
+  },
 });
