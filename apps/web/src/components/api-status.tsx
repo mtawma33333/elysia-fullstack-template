@@ -7,7 +7,10 @@ import { app } from "#src/lib/api.ts";
 export const ApiStatus = () => {
   const health = useQuery({
     queryKey: ["health"],
-    queryFn: async () => await app.health.get(),
+    queryFn: async () => {
+      const { data } = await app.health.get()
+      return data;
+    }
   });
 
   if (health.isPending) {
