@@ -8,9 +8,9 @@ export const ApiStatus = () => {
   const health = useQuery({
     queryKey: ["health"],
     queryFn: async () => {
-      const { data } = await app.health.get()
+      const { data } = await app.health.get();
       return data;
-    }
+    },
   });
 
   if (health.isPending) {
