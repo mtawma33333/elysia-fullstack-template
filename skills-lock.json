@@ -1,6 +1,18 @@
 {
   "version": 1,
   "skills": {
+    "drizzle-orm-queries-and-sql": {
+      "source": "andrewsrigom/agent-skills",
+      "sourceType": "github",
+      "skillPath": "drizzle-orm/drizzle-orm-queries-and-sql/SKILL.md",
+      "computedHash": "d312cf442c9434cf58d3bd4b9522c419afc904df2e112fda50115b27b1f0c74e"
+    },
+    "drizzle-orm-schema-and-relations": {
+      "source": "andrewsrigom/agent-skills",
+      "sourceType": "github",
+      "skillPath": "drizzle-orm/drizzle-orm-schema-and-relations/SKILL.md",
+      "computedHash": "0f3c217448c471e6a852d11a8b25abddec293e576f5ec5ce74f680ddb371198c"
+    },
     "elysiajs": {
       "source": "elysiajs/skills",
       "sourceType": "github",
