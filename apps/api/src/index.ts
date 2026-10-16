@@ -1,8 +1,13 @@
 import { once } from "node:events";
 
-import { app } from "#src/app.ts";
-import { db } from "#src/context.ts";
+import { createDb } from "@bstack/db";
+
+import { createApp } from "#src/app.ts";
+import { createDatabaseContext } from "#src/context.ts";
 import { env } from "#src/env.ts";
+
+const db = createDb(env.DATABASE_URL);
+const app = createApp(createDatabaseContext(db));
 
 app.listen(env.PORT, ({ hostname, port }) => {
   console.log(`🦊 Elysia is running at http://${hostname}:${port}`);

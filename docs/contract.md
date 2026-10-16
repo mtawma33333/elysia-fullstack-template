@@ -63,6 +63,6 @@ Read from the environment in `apps/api/src/env.ts`, with the defaults below. See
 
 ## Testing contract
 
-- **API unit tests** import `app` from `src/app.ts` and call it through `treaty(app)` in-process; no server or socket is started.
+- **API unit tests** build the app with `createApp(createDatabaseContext(testDatabase.db))`, where `testDatabase` comes from `createTestDatabase()`, and call it through `treaty(app)` in-process; no server or socket is started.
 - **Database tests** use `createTestDatabase()` from `@bstack/db/testing`, which returns a migrated database and a `remove()` cleanup.
 - **E2E tests** start a web dev server on port `3200` (`E2E_TEST_PORT`) via Playwright global setup and drive it in a browser.

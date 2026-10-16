@@ -18,6 +18,30 @@
       "sourceType": "github",
       "skillPath": "elysia/SKILL.md",
       "computedHash": "1f8cdb3c66e6127bd7e31fd5478bf912d976059896629cc58eec031f9bae0c74"
+    },
+    "playwright-debugging-traces-and-flake-reduction": {
+      "source": "andrewsrigom/agent-skills",
+      "sourceType": "github",
+      "skillPath": "playwright/playwright-debugging-traces-and-flake-reduction/SKILL.md",
+      "computedHash": "5d1e388f4752156dec1e7a16f16d7e05308639fafd7f4597a01db4b7a4a44457"
+    },
+    "playwright-default-test-architecture": {
+      "source": "andrewsrigom/agent-skills",
+      "sourceType": "github",
+      "skillPath": "playwright/playwright-default-test-architecture/SKILL.md",
+      "computedHash": "058cd02108004aacfb0244c0f3f1f8b83e56aaf48e5ac4b7584d32701ebcc5bf"
+    },
+    "playwright-locators-assertions-and-user-visible-contracts": {
+      "source": "andrewsrigom/agent-skills",
+      "sourceType": "github",
+      "skillPath": "playwright/playwright-locators-assertions-and-user-visible-contracts/SKILL.md",
+      "computedHash": "6a6b70424d4b63eacd3a8c122dbec6c4b85ff05d91565ee6f1b1e18ed32e814e"
+    },
+    "playwright-network-control-and-api-synchronization": {
+      "source": "andrewsrigom/agent-skills",
+      "sourceType": "github",
+      "skillPath": "playwright/playwright-network-control-and-api-synchronization/SKILL.md",
+      "computedHash": "d1e4feeeeeb01e585f81e78c45208789f512443a898b21c9c4bfff8925aa23db"
     }
   }
 }

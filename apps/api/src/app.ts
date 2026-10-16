@@ -6,31 +6,33 @@ import { Elysia } from "elysia";
 import { env } from "#src/env.ts";
 
 import packageJson from "../package.json";
-import { api } from "./api";
+import { createApi } from "./api";
+import type { DatabaseContext } from "./context.ts";
 
-export const app = new Elysia()
-  .use(
-    logger({
-      level: env.LOG_LEVEL,
-      transport: {
-        target: "pino-pretty",
-        options: {
-          colorize: true,
+export const createApp = (databaseContext: DatabaseContext) =>
+  new Elysia()
+    .use(
+      logger({
+        level: env.LOG_LEVEL,
+        transport: {
+          target: "pino-pretty",
+          options: {
+            colorize: true,
+          },
         },
-      },
-    })
-  )
-  .use(cors())
-  .use(
-    openapi({
-      documentation: {
-        info: {
-          title: "Elysia API",
-          version: packageJson.version,
-          description: "A Elysia OpenAPI documentation",
+      })
+    )
+    .use(cors())
+    .use(
+      openapi({
+        documentation: {
+          info: {
+            title: "Elysia API",
+            version: packageJson.version,
+            description: "A Elysia OpenAPI documentation",
+          },
         },
-      },
-      references: fromTypes(),
-    })
-  )
-  .use(api);
+        references: fromTypes(),
+      })
+    )
+    .use(createApi(databaseContext));

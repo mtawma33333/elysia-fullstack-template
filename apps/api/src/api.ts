@@ -1,7 +1,10 @@
 import { Elysia } from "elysia";
 
-import { healthRoutes } from "./health";
+import type { DatabaseContext } from "#src/context.ts";
 
-export const api = new Elysia({
-  prefix: "/api",
-}).use(healthRoutes);
+import { createHealthRoutes } from "./health";
+
+export const createApi = (databaseContext: DatabaseContext) =>
+  new Elysia({
+    prefix: "/api",
+  }).use(createHealthRoutes(databaseContext));

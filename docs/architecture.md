@@ -20,12 +20,12 @@ Out of scope: business rules, persistence, and anything the API must own.
 In scope: HTTP routing, request validation, and translation between HTTP and the database.
 Out of scope: UI concerns and SQL schema definitions (owned by `packages/db`).
 
-- `src/index.ts`: starts the server, handles shutdown, exports the `App` type.
-- `src/app.ts`: builds the Elysia app; plugins (logger, CORS, OpenAPI) and feature routes register here.
-- `src/context.ts`: the database connection.
+- `src/index.ts`: builds the production app from the `DATABASE_URL` database, starts the server, handles shutdown, exports the `App` type.
+- `src/app.ts`: `createApp(databaseContext)` builds the Elysia app; plugins (logger, CORS, OpenAPI) and feature routes register here.
+- `src/context.ts`: `createDatabaseContext(db)`, an Elysia plugin that decorates `db` on the request context.
 - `src/env.ts`: environment variables with defaults.
-- `src/<module>/`: one directory per feature; `health/` is the reference module.
-- `tests/`: unit tests that call the app in-process.
+- `src/<module>/`: one directory per feature; each exports a `create<Feature>Routes(databaseContext)` factory. `health/` is the reference module.
+- `tests/`: unit tests that build the app around a `createTestDatabase()` connection.
 
 ### `packages/db` — database (`@bstack/db`)
 
@@ -55,8 +55,8 @@ Out of scope: app-specific composition; keep feature components in `apps/web`.
 ## Invariants
 
 1. **The web app depends on the API for types only.** `@bstack/api` is a devDependency of `apps/web`; the browser bundle never imports API code. The type flows from `export type App` in `apps/api/src/index.ts` into `treaty<App>`.
-2. **Each API feature registers itself in `src/app.ts`.** A module exports an Elysia instance with a `prefix` and an OpenAPI `tags` entry; `app.ts` composes modules, it does not hold route logic.
-3. **All SQLite access goes through `packages/db`.** Only `apps/api` calls `createDb`; no other package talks to the database.
+2. **Each API feature registers itself in `src/app.ts`.** A module exports a `create<Feature>Routes(databaseContext)` factory returning an Elysia instance with a `prefix` and an OpenAPI `tags` entry; `app.ts` composes modules, it does not hold route logic.
+3. **All SQLite access goes through `packages/db`, and the connection is injected.** `apps/api` is the only app that builds one; `createDatabaseContext(db)` decorates it so handlers read `db` from `Context` instead of importing a singleton. The composition root decides the connection: the server injects `createDb(env.DATABASE_URL)`, tests inject `createTestDatabase().db`.
 4. **Schema changes are generated, never written.** Edit `src/schema/`, then run `vp run db:generate` and `vp run db:migrate`. Treat `src/migrations/` as read-only.
 5. **Intra-package imports use `#src/*`.** Cross-package imports use the `@bstack/*` package name, sorted into their own import group.
 6. **Shared primitives live in `packages/ui`.** Add or update them there so every app sees the change.
@@ -72,7 +72,7 @@ browser (apps/web)
 
 - **Request path**: a route's TanStack Query against the Treaty client sends HTTP to the API; the module handler queries through Drizzle and returns data.
 - **Type path**: the API is the single source of the request/response contract; the web client re-derives its types from `App` at build time.
-- **Connection path**: the API builds one `db` in `src/context.ts` and shares it across handlers.
+- **Connection path**: the composition root wraps one `db` in `createDatabaseContext(db)` and decorates it onto the app, so every handler shares that single connection.
 
 ### Same-origin assumption
 
