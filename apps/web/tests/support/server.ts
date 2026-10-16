@@ -8,6 +8,7 @@ import { retry } from "es-toolkit/function";
 export const e2eBaseURL = `http://localhost:${process.env.E2E_TEST_PORT ?? "3200"}`;
 
 const webDir = fileURLToPath(new URL("../..", import.meta.url));
+const apiDir = fileURLToPath(new URL("../../../api", import.meta.url));
 
 const waitForServer = async (url: string, attempts = 100): Promise<void> => {
   await retry(
@@ -60,6 +61,9 @@ export const startTestServer = async (baseURL: string) => {
 
   try {
     children.push(
+      start(apiDir, ["node_modules/vite-plus/bin/vp", "run", "dev"], {
+        NODE_ENV: "test",
+      }),
       start(
         webDir,
         [

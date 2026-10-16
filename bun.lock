@@ -31,6 +31,8 @@
         "@elysia/eden": "catalog:",
         "@types/bun": "catalog:",
         "pino-pretty": "catalog:",
+        "vite": "catalog:",
+        "vite-plus": "catalog:",
       },
     },
     "apps/web": {
